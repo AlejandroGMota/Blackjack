@@ -1,6 +1,4 @@
-import underscore from './underscore-min'
-export const  nuevoJuego=(()=>{
-    'use strict'
+export const nuevoJuego=(()=>{
     let deck=[];
     const tipos= ['C','D','H','S'];
     const especiales= ['A','J','Q','K'];
@@ -15,7 +13,8 @@ export const  nuevoJuego=(()=>{
             deck.push(esp+tipo)
             }
         }
-        deck=_.shuffle(deck);
+        console.log(deck)// quitar
+        
         return deck;
     }
     crearDeck();
@@ -30,7 +29,7 @@ export const  nuevoJuego=(()=>{
         let puntos=0;
         if ( isNaN(valor)) {
             if (puntos=(valor==='A')) {
-                puntos=11; //hacer que valga 11 || 1
+                puntos=11; //hacer que valga 11 0 1
             }
             else{
                 puntos=10;
