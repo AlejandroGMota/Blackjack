@@ -1,5 +1,6 @@
 export const nuevoJuego=(()=>{
     let deck=[];
+    let ordenDeck=[];
     const tipos= ['C','D','H','S'];
     const especiales= ['A','J','Q','K'];
     const crearDeck=()=>{
@@ -13,16 +14,30 @@ export const nuevoJuego=(()=>{
             deck.push(esp+tipo)
             }
         }
-        console.log(deck)// quitar
-        
         return deck;
     }
+    const crearDeckRandom=()=>{
+        for (let index = 1; index <= 52; index++) {
+            const n=Math.round((Math.random()*103)/2);
+            if (deck[n]){
+                ordenDeck.push(deck[n]);
+                deck.splice(n,1)
+            }else{
+            const n2=deck.length-1
+            ordenDeck.push(deck[n2]);
+            deck.splice(n2,1)
+            }            
+        }
+        
+        return ordenDeck;
+    }
     crearDeck();
+    crearDeckRandom();
     const pedirCarta=()=>{
-        if (deck.length===0){
+        if (ordenDeck.length===0){
             throw 'No hay más cartas';
         }
-        return deck.pop();
+        return ordenDeck.pop();
     } 
     const valorCarta=(carta)=>{
         const valor=carta.substring(0,carta.length-1);
