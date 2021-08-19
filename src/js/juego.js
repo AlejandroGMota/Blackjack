@@ -1,6 +1,8 @@
-export const nuevoJuego=(()=>{
+export default nuevoJuego =(()=>{
+    let puntosTemp=0,puntosJugador,puntosComputadora, nombre_jugador;
     let deck=[];
     let ordenDeck=[];
+    let calcularCartas=[];
     const tipos= ['C','D','H','S'];
     const especiales= ['A','J','Q','K'];
     const crearDeck=()=>{
@@ -16,6 +18,7 @@ export const nuevoJuego=(()=>{
         }
         return deck;
     }
+    crearDeck();
     const crearDeckRandom=()=>{
         for (let index = 1; index <= 52; index++) {
             const n=Math.round((Math.random()*103)/2);
@@ -23,28 +26,26 @@ export const nuevoJuego=(()=>{
                 ordenDeck.push(deck[n]);
                 deck.splice(n,1)
             }else{
-            const n2=deck.length-1
+            const n2=Math.round((deck.length-1)/2)
             ordenDeck.push(deck[n2]);
             deck.splice(n2,1)
             }            
         }
-        
         return ordenDeck;
     }
-    crearDeck();
     crearDeckRandom();
     const pedirCarta=()=>{
         if (ordenDeck.length===0){
             throw 'No hay más cartas';
         }
-        return ordenDeck.pop();
+        return ordenDeck.shift();
     } 
     const valorCarta=(carta)=>{
         const valor=carta.substring(0,carta.length-1);
         let puntos=0;
         if ( isNaN(valor)) {
             if (puntos=(valor==='A')) {
-                puntos=11; //hacer que valga 11 0 1
+                puntos=11
             }
             else{
                 puntos=10;
@@ -55,11 +56,44 @@ export const nuevoJuego=(()=>{
         }
         return puntos;
     }
-    const valor=valorCarta(pedirCarta());
+    const calcularPuntos=()=>{
+        puntosTemp=0
+        let contador=0;        
+        calcularCartas.forEach(element =>{
+            puntosTemp=puntosTemp+valorCarta(element)
+            switch (element) {
+                case 'AC':
+                    contador++;
+                    break;
+                case 'AH':
+                    contador++;
+                    break;
+                case 'AD':
+                    contador++;
+                    break;
+                case 'AS':
+                    contador++;
+                    break;
+                default:
+                    break;
+            }
+            return contador;
+        }) 
+        while(puntosTemp>21&&puntosTemp!=21&&contador>0){
+            puntosTemp=puntosTemp-10;
+            contador--;
+        }
+        return puntosTemp;
+    }
     const turnoComputadora=(puntosMinimos)=>{
+        calcularCartas=[];
         do{
-            const carta=pedirCarta();
-            puntosComputadora=puntosComputadora+valorCarta(carta);
+            calcularCartas.push(ordenDeck[0])
+            const carta=ordenDeck[0]
+            pedirCarta();
+            calcularPuntos();
+            puntosComputadora=puntosTemp
+            
             puntosHTML[1].innerText=puntosComputadora;
     
             const imgCarta=document.createElement('img');
@@ -92,12 +126,11 @@ export const nuevoJuego=(()=>{
             }else{
                 alert('Perdiste')
             }
-        }, 100);
+        }, 200);
     }
     
     document.querySelector('header').innerText='Blackjack 21'
     
-    let puntosJugador=0, puntosComputadora=0, nombre_jugador;
     const btnIniciar=document.querySelector('#btnPlay'), 
     btnPedir=document.querySelector('#btnHit'), 
     btnDetener=document.querySelector('#btnStand'), 
@@ -110,12 +143,14 @@ export const nuevoJuego=(()=>{
     btnDetener.disabled=true;
     
     btnPedir.addEventListener('click', ()=>{
-        const carta=pedirCarta();
-
-        btnDetener.disabled=false;
-
+        const carta=ordenDeck[0];
+        calcularCartas.push(ordenDeck[0]);
+        pedirCarta();
+        calcularPuntos();
+        puntosJugador=puntosTemp;
         
-        puntosJugador=puntosJugador+valorCarta(carta);
+        btnDetener.disabled=false;
+        
         puntosHTML[0].innerText=puntosJugador;
     
         const imgCarta=document.createElement('img')
@@ -143,10 +178,11 @@ export const nuevoJuego=(()=>{
     
     })
     btnIniciar.addEventListener('click', ()=>{
-        const carta=pedirCarta();
-
-        
-        puntosJugador=puntosJugador+valorCarta(carta);
+        const carta=ordenDeck[0];
+        calcularCartas.push(ordenDeck[0]);
+        pedirCarta();
+        calcularPuntos();
+        puntosJugador=puntosTemp;
         puntosHTML[0].innerText=puntosJugador;
     
         const imgCarta=document.createElement('img')
@@ -175,7 +211,11 @@ export const nuevoJuego=(()=>{
     })
     btnReset.addEventListener('click',()=> {
         console.clear();
-        deck=crearDeck();
+        ordenDeck=[]
+        calcularCartas=[];
+        crearDeck();
+        crearDeckRandom();
+        
         puntosComputadora=0;
         puntosJugador=0;
     
