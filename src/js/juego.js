@@ -1,4 +1,4 @@
-export default nuevoJuego =(()=>{
+export const nuevoJuego =(()=>{
     let puntosTemp=0,puntosJugador,puntosComputadora, nombre_jugador;
     let deck=[];
     let ordenDeck=[];
@@ -97,7 +97,7 @@ export default nuevoJuego =(()=>{
             puntosHTML[1].innerText=puntosComputadora;
     
             const imgCarta=document.createElement('img');
-            imgCarta.src=`src/cartas/${carta}.png`;
+            imgCarta.src=`cartas/${carta}.png`;
             imgCarta.classList.add('carta')
             
     
@@ -154,7 +154,7 @@ export default nuevoJuego =(()=>{
         puntosHTML[0].innerText=puntosJugador;
     
         const imgCarta=document.createElement('img')
-        imgCarta.src=`src/cartas/${carta}.png`;
+        imgCarta.src=`cartas/${carta}.png`;
         imgCarta.classList.add('carta')
         divCartasJugador.append(imgCarta)
     
@@ -186,7 +186,7 @@ export default nuevoJuego =(()=>{
         puntosHTML[0].innerText=puntosJugador;
     
         const imgCarta=document.createElement('img')
-        imgCarta.src=`src/cartas/${carta}.png`;
+        imgCarta.src=`cartas/${carta}.png`;
         imgCarta.classList.add('carta')
     
         let img1 = document.getElementById('back1');
