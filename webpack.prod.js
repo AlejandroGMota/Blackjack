@@ -55,7 +55,10 @@ module.exports={
     plugins:[
             new HtmlWebPackPlugin({
                 template: './src/index.html',
-                filename: './index.html'
+                filename: './index.html',
+                thunks: ['index'],
+                title: 'Webpack app',
+                favicon: './src/favicon.png'
             }),
             new MiniCssExtract({
                 filename:'[name].[fullhash].css',
