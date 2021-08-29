@@ -1,34 +1,134 @@
-html, body{
+*{
     margin: 0px;
-    background-color: #0a680a;
-    color: white;
-
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-html, footer{
-    margin: 0px;
-    background-color: #000000;
-    color: white;
-}    
+body{
+    background-color: #0a680a;
+}
+::-webkit-scrollbar {
+    display: none;
+}
 .titulo{
+    position:absolute top;
     text-align: center;
     background-color: black;
+    height: 150px;
+    width: 100%;
+    line-height: 150px;
     color: white;
-    padding: 10px;
-    font-size: 45px;
+    font-size: 70px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.game{
+    display: block;
+    height: 90%;
+    width: 88.54%;
+    margin-left: 5.73%;
+    background-color: #054905;
+    box-shadow: 0px 0px 55px 0px #000000;
+} 
+.back{
+   visibility:visible;
+   width:250px;
+   margin-top: 60px;
 }
 .carta{
-    position: relative;
-    width: 150px;
-    left: 125px;
-    margin: 100;
+    position:relative;
+    width: 250px;
+    left: 100px;
+    margin-left: -200px;
+    margin-top: 0px;
+} 
+.carta-computadora{
+    position:relative;
+    width: 250px;
+    left: 100px;
+    margin-left: -200px;
+    margin-top: -375px;
+    
+} 
+.ul-botones{
+    clear: both;
+    background-color: #b8b7b767;
+    box-shadow: 0px 10px 50px 0px #00000096;
+    border-bottom: 1px solid #000000;
+    border-radius: 05px;
+    width: 100%;
+    height: 55px;
 }
-#computadora-cartas, #jugador-cartas{
-    height: 125px;
+li{
+    display: block;
+    float: left;
+    text-align: center;
+    width:calc(100%/3);
+    height: calc(7%-4px);
 }
-.back{
-    position: relative;
-    visibility: visible;
-    width: 150px;
-    left: 125px;
-    margin: 100;
+.div-jugador{   
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    width: 35%;
+    max-height: 86%;
+}
+.div-computadora{
+    display: block;    
+    float: left;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    width: 35%;
+    height: 86%;
+    max-height: 86%;
+}
+.div-stats{ 
+    display: block;
+    float:left;
+    text-align: center;
+    color:#ffffff; 
+    padding-top: 15px;
+    margin-bottom: 25px;
+    width:30%;
+    max-height: 86%;
+}
+footer{
+    clear: both;
+    text-align: center;
+    background-color:black;
+    color: white;
+    height:100px;
+    line-height: 100px;
+    width: 100%;
+}
+address{
+    font-size: 18px;
+}
+address a{
+    text-align: center;
+    color: red;
+    text-decoration: none;
+    background-color: black;
+}
+.btn{
+    border-radius:  10px;
+    border: 1px;
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 10px;
+    color: white;
+    background-color: blue;
+    font-size: 15px;
+    text-decoration: none;
+}
+.div-stats h3{
+    padding-bottom: 7px;
+    font-size: 22px;
+}
+h2{
+    padding-bottom: 12px;
+    color: wheat;
+    font-size: 35px;
 }

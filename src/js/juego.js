@@ -94,18 +94,15 @@ export const nuevoJuego =(()=>{
             calcularPuntos();
             puntosComputadora=puntosTemp
             
-            puntosHTML[1].innerText=puntosComputadora;
+            puntosHTML[5].innerText=puntosComputadora;
     
             const imgCarta=document.createElement('img');
             imgCarta.src=`cartas/${carta}.png`;
-            imgCarta.classList.add('carta')
+            imgCarta.classList.add('carta-computadora')
             
     
             let img2 = document.getElementById('back2');
             img2.style.visibility = 'hidden';
-            img2.style.width = '0px';
-            img2.style.left= '0px';
-            img2.style.marginLeft = '0px';
     
             divCartasComputadora.append(imgCarta) 
     
@@ -113,7 +110,8 @@ export const nuevoJuego =(()=>{
                 break
             }
         }
-        while ((puntosComputadora<puntosMinimos)&&(puntosMinimos<=21)) {    
+        while ((puntosComputadora<puntosMinimos)&&(puntosMinimos<=21)) {  // hacer que saque carta si puntosMinimos<=11  
+            
         }
     
         setTimeout(() => {
@@ -129,14 +127,12 @@ export const nuevoJuego =(()=>{
         }, 200);
     }
     
-    document.querySelector('header').innerText='Blackjack 21'
-    
     const btnIniciar=document.querySelector('#btnPlay'), 
     btnPedir=document.querySelector('#btnHit'), 
     btnDetener=document.querySelector('#btnStand'), 
     btnReset=document.querySelector('#btnReset'), 
     bntNombreJugador=document.querySelector("#btnPlayerName" ), 
-    puntosHTML=document.querySelectorAll('small'), 
+    puntosHTML=document.querySelectorAll('small'), //0 Puntos jugador, 1 Juegos Jugados , 2 Juegos Ganados, 3 Juegos perdidos, 4 Juegos Empatados, 5 Puntos computadora,
     divCartasJugador=document.querySelector('#jugadorCartas'), 
     divCartasComputadora=document.querySelector('#computadoraCartas')
 
@@ -162,10 +158,7 @@ export const nuevoJuego =(()=>{
     
         let img1 = document.getElementById('back1');
         img1.style.visibility = 'hidden';
-        img1.style.width = '0px';
-        img1.style.left= '0px';
-        img1.style.marginLeft = '0px';
-    
+            
         if(puntosJugador>21){
             btnPedir.disabled=true;
             btnDetener.disabled=true;
@@ -220,7 +213,7 @@ export const nuevoJuego =(()=>{
         puntosJugador=0;
     
         puntosHTML[0].innerHTML=0;
-        puntosHTML[1].innerHTML=0;
+        puntosHTML[5].innerHTML=0;
     
     
         divCartasComputadora.innerHTML='';
@@ -232,13 +225,11 @@ export const nuevoJuego =(()=>{
     
         let img1 = document.getElementById('back1');
         img1.style.visibility = 'visible';
-        img1.style.width = '150px';
-        img1.style.left= '125px';
+        img1.style.width = '250px';
     
         let img2 = document.getElementById('back2');
         img2.style.visibility = 'visible';
-        img2.style.width = '150px';
-        img2.style.left= '125px';
+        img2.style.width = '250px';
     
     })
     bntNombreJugador.addEventListener('click', ()=>{
