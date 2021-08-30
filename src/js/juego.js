@@ -1,5 +1,6 @@
 export const nuevoJuego =(()=>{
     let puntosTemp=0,puntosJugador,puntosComputadora, nombre_jugador;
+    let statistics=[0,0,0,0,];
     let deck=[];
     let ordenDeck=[];
     let calcularCartas=[];
@@ -110,34 +111,59 @@ export const nuevoJuego =(()=>{
                 break
             }
         }
-        while ((puntosComputadora<puntosMinimos)&&(puntosMinimos<=21)) {  // hacer que saque carta si puntosMinimos<=11  
-            
+        while ((puntosComputadora<puntosMinimos)&&(puntosMinimos<=21)) {  
         }
-    
         setTimeout(() => {
             if (puntosComputadora===puntosMinimos){
+                statistics[0]=statistics[0]+1;
+                statistics[3]=statistics[3]+1;
+                statisticsCount();
+                guardarLocalStorage();
                 alert('Empate')
             }else if (puntosMinimos>21){
+                statistics[0]=statistics[0]+1;
+                statistics[2]=statistics[2]+1;
+                statisticsCount();
+                guardarLocalStorage();
                 alert('Perdiste')
             }else if (puntosComputadora>21){
+                statistics[0]=statistics[0]+1;
+                statistics[1]=statistics[1]+1;
+                statisticsCount();
+                guardarLocalStorage();
                 alert('Ganaste')
             }else{
+                statistics[0]=statistics[0]+1;
+                statistics[2]=statistics[2]+1;
+                statisticsCount();
+                guardarLocalStorage();
                 alert('Perdiste')
             }
         }, 200);
     }
-    
     const btnIniciar=document.querySelector('#btnPlay'), 
     btnPedir=document.querySelector('#btnHit'), 
     btnDetener=document.querySelector('#btnStand'), 
     btnReset=document.querySelector('#btnReset'), 
-    bntNombreJugador=document.querySelector("#btnPlayerName" ), 
-    puntosHTML=document.querySelectorAll('small'), //0 Puntos jugador, 1 Juegos Jugados , 2 Juegos Ganados, 3 Juegos perdidos, 4 Juegos Empatados, 5 Puntos computadora,
+    bntNombreJugador=document.querySelector("#btnPlayerName" ),
+    btnResetStatistics=document.querySelector('#btnResetStatistics'), 
+    btnInstrucciones=document.getElementById('instrucciones'),
+    puntosHTML=document.querySelectorAll('small'), //0 Puntos jugador, 1 Juegos Totales , 2 Juegos Ganados, 3 Juegos perdidos, 4 Juegos Empatados, 5 Puntos computadora,
     divCartasJugador=document.querySelector('#jugadorCartas'), 
-    divCartasComputadora=document.querySelector('#computadoraCartas')
+    divCartasComputadora=document.querySelector('#computadoraCartas'),
+    nombreJugador=document.querySelector('strong');
 
-    btnDetener.disabled=true;
+    const statisticsCount=()=>{
+        puntosHTML[1].innerText=statistics[0];
+        puntosHTML[2].innerText=statistics[1];
+        puntosHTML[3].innerText=statistics[2];
+        puntosHTML[4].innerText=statistics[3];
+        nombreJugador.innerText=(statistics[4] ||"Jugador");
+    }
+    cargarLocalStorage()
+    statisticsCount();
     
+    btnDetener.disabled=true;
     btnPedir.addEventListener('click', ()=>{
         const carta=ordenDeck[0];
         calcularCartas.push(ordenDeck[0]);
@@ -169,7 +195,7 @@ export const nuevoJuego =(()=>{
             turnoComputadora(puntosJugador);
         }
     
-    })
+    });
     btnIniciar.addEventListener('click', ()=>{
         const carta=ordenDeck[0];
         calcularCartas.push(ordenDeck[0]);
@@ -195,13 +221,13 @@ export const nuevoJuego =(()=>{
         if(puntosJugador>2){
             btnIniciar.disabled=true;
         }
-    })
+    });
     btnDetener.addEventListener('click', () =>{
         btnDetener.disabled=true;
         btnPedir.disabled=true;
     
         turnoComputadora(puntosJugador);
-    })
+    });
     btnReset.addEventListener('click',()=> {
         console.clear();
         ordenDeck=[]
@@ -231,13 +257,29 @@ export const nuevoJuego =(()=>{
         img2.style.visibility = 'visible';
         img2.style.width = '250px';
     
-    })
+    }),
     bntNombreJugador.addEventListener('click', ()=>{
-        nombre_jugador = prompt ('Introduzca su nombre');
-    
-        document.querySelector('strong').innerText=nombre_jugador;
+        nombre_jugador = prompt ('Introduzca su nombre');  
+        statistics[4]=nombre_jugador;
+        guardarLocalStorage();
+        nombreJugador.innerText=statistics[4];
+    });
+    btnResetStatistics.addEventListener('click',()=>{
+        localStorage.removeItem('statistics')
+    });
+    btnInstrucciones.addEventListener('click',()=>{
+        console.log('aqui deberian ir las instrucciones');
     })
-    
+
+    function guardarLocalStorage(){
+        localStorage.setItem('statistics', JSON.stringify(statistics))
+    }
+    function cargarLocalStorage(){
+        const statisticsCargados=JSON.parse(localStorage.getItem('statistics'));
+        if(statisticsCargados){
+            statistics=statisticsCargados;
+        } 
+    }
 })();
 
 
