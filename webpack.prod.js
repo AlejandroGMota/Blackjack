@@ -56,7 +56,7 @@ module.exports={
             new HtmlWebPackPlugin({
                 template: './src/index.html',
                 filename: './index.html',
-                title: 'Webpack app',
+                title: 'blackjack',
                 favicon: './src/favicon.png'
             }),
             new MiniCssExtract({
