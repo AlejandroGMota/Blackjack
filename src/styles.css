@@ -153,7 +153,7 @@ address a:hover {
 
 
 #modal-container{
-	visibility: visible; /*poner hiden*/
+	visibility: hidden; 
 	position: fixed;
 	z-index: 1000px;
 	width: 100%;
@@ -172,7 +172,7 @@ address a:hover {
     background-color: rgb(99, 182, 83);
 	text-align: center;
 	transition: transform 0.8s;
-	transform: translateY(0%);/*poner -150% */
+	transform: translateY(-150%);
 }
 .derecha{
     color: rgb(233, 233, 233);
