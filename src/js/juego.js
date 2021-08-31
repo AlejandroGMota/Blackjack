@@ -1,4 +1,4 @@
-export const nuevoJuego =(()=>{
+export default function nuevoJuego() {
     let puntosTemp=0,puntosJugador,puntosComputadora, nombre_jugador;
     let statistics=[0,0,0,0,];
     let deck=[];
@@ -147,7 +147,6 @@ export const nuevoJuego =(()=>{
     btnReset=document.querySelector('#btnReset'), 
     bntNombreJugador=document.querySelector("#btnPlayerName" ),
     btnResetStatistics=document.querySelector('#btnResetStatistics'), 
-    btnInstrucciones=document.getElementById('instrucciones'),
     puntosHTML=document.querySelectorAll('small'), //0 Puntos jugador, 1 Juegos Totales , 2 Juegos Ganados, 3 Juegos perdidos, 4 Juegos Empatados, 5 Puntos computadora,
     divCartasJugador=document.querySelector('#jugadorCartas'), 
     divCartasComputadora=document.querySelector('#computadoraCartas'),
@@ -267,9 +266,6 @@ export const nuevoJuego =(()=>{
     btnResetStatistics.addEventListener('click',()=>{
         localStorage.removeItem('statistics')
     });
-    btnInstrucciones.addEventListener('click',()=>{
-        console.log('aqui deberian ir las instrucciones');
-    })
 
     function guardarLocalStorage(){
         localStorage.setItem('statistics', JSON.stringify(statistics))
@@ -280,6 +276,6 @@ export const nuevoJuego =(()=>{
             statistics=statisticsCargados;
         } 
     }
-})();
+};
 
 

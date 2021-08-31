@@ -107,7 +107,7 @@ address{
 }
 address a{
     text-align: center;
-    color: red;
+    color: white;
     text-decoration: none;
     background-color: black;
 }
@@ -146,4 +146,40 @@ h2{
     color: wheat;
     font-size: 35px;
     text-shadow: #000000 0px 0px 17px;
+}
+address a:hover {
+	text-decoration: underline;
+}
+
+
+#modal-container{
+	visibility: visible; /*poner hiden*/
+	position: fixed;
+	z-index: 1000px;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background:#11111169 ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#modal{
+	width: 40%;
+	height: 60%;
+	overflow: hidden;
+    background-color: rgb(99, 182, 83);
+	text-align: center;
+	transition: transform 0.8s;
+	transform: translateY(0%);/*poner -150% */
+}
+.derecha{
+    color: rgb(233, 233, 233);
+    display: block;
+    margin-left: 89%;
+}   
+.intrucciones{
+    color: aliceblue;
+    margin-top: 15px;
 }
