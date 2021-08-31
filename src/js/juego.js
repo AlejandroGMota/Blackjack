@@ -259,12 +259,21 @@ export default function nuevoJuego() {
     }),
     bntNombreJugador.addEventListener('click', ()=>{
         nombre_jugador = prompt ('Introduzca su nombre');  
+        if(nombre_jugador.length>16){
+            nombre_jugador=nombre_jugador.substring(0,16);
+        }
+
         statistics[4]=nombre_jugador;
         guardarLocalStorage();
         nombreJugador.innerText=statistics[4];
     });
     btnResetStatistics.addEventListener('click',()=>{
+        nombre_jugador=statistics[4];
         localStorage.removeItem('statistics')
+        statistics=[0,0,0,0,];
+        statistics[4]=nombre_jugador;
+        statisticsCount();
+        guardarLocalStorage();
     });
 
     function guardarLocalStorage(){

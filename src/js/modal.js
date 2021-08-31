@@ -10,10 +10,10 @@ export default function modal() {
     });
     
     cerrar.addEventListener('click', () =>{
-    modal.style.transform= "translateY(-150%)";
+    modal.style.transform= "translateY(-140%)";
     setTimeout( ()=>{
         modalC.style.visibility='hidden';
-        },810)
+        },500)
     });
    
     
