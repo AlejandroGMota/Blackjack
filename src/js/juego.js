@@ -94,16 +94,15 @@ export default function nuevoJuego() {
             pedirCarta();
             calcularPuntos();
             puntosComputadora=puntosTemp
-            
             puntosHTML[5].innerText=puntosComputadora;
     
             const imgCarta=document.createElement('img');
             imgCarta.src=`cartas/${carta}.png`;
-            imgCarta.classList.add('carta-computadora')
-            
+            imgCarta.classList.add('carta')
     
             let img2 = document.getElementById('back2');
             img2.style.visibility = 'hidden';
+            img2.style.height= "0px"
     
             divCartasComputadora.append(imgCarta) 
     
@@ -183,6 +182,7 @@ export default function nuevoJuego() {
     
         let img1 = document.getElementById('back1');
         img1.style.visibility = 'hidden';
+        img1.style.height= "0px"
             
         if(puntosJugador>21){
             btnPedir.disabled=true;
